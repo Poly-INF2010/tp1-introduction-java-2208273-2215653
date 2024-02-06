@@ -1,40 +1,40 @@
 package Shape;
 
 import Point.Point2d;
-
 import java.util.Collection;
 
 public class Ellipse extends BaseShape {
-    /** TODO
-     * Create a filled Ellipse that is centered on (0, 0)
-     * @param widthDiameter Width of the Ellipse
-     * @param heightDiameter Height of the Ellipse
-     */
     public Ellipse(Double widthDiameter, Double heightDiameter) {
-
+        super(EllipseCoords(widthDiameter, heightDiameter));
     }
 
-    /** TODO
-     * Create a filled Ellipse that is centered on (0,0)
-     * @param dimensions 2D point containing the width and height of the Ellipse
-     */
     public Ellipse(Point2d dimensions) {
-
+        super(EllipseCoords(dimensions.X(), dimensions.Y()));
     }
 
-    /**
-     * Create an Ellipse from a given collection of 2D points
-     * @param coords Collection of 2D points
-     */
     private Ellipse(Collection<Point2d> coords) {
-
+        super(coords);
     }
 
-    /** TODO
-     * @return Deep Copy of the Ellipse
-     */
     @Override
     public Ellipse clone() {
-        return null;
+        return new Ellipse(cloneCoords());
+    }
+
+    private static Collection<Point2d> EllipseCoords(Double widthDiameter, Double heightDiameter) {
+        Collection<Point2d> ellipseCoords = new java.util.ArrayList<>();
+
+        double halfWidth = widthDiameter / 2.0;
+        double halfHeight = heightDiameter / 2.0;
+
+        for (double x = -halfWidth; x <= halfWidth; x += 0.5) {
+            for (double y = -halfHeight; y <= halfHeight; y += 0.5) {
+                if ((x / halfWidth) * (x / halfWidth) + (y / halfHeight) * (y / halfHeight) <= 1.0) {
+                    ellipseCoords.add(new Point2d(x, y));
+                }
+            }
+        }
+
+        return ellipseCoords;
     }
 }
