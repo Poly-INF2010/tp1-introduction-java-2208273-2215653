@@ -1,0 +1,7 @@
+Points	3/5
+Formes	5/5
+Lettres	0/5
+Qualité de code et Design	4/5
+Total	12/20
+
+les methodes statiques de PointOperator devraient être appelées dans Point2D
